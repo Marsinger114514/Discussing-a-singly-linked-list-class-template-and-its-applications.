@@ -4,7 +4,7 @@ Card::Card( string Name, string Admission, string Id, char Gender):name(Name),ad
 	
 }
 
-void Card:: Set(string Name,string Admission,string Id,char Gender){
+void Card::Set(string Name,string Admission,string Id,char Gender){
 		name=Name;
 		admission=Admission;
 		id=Id;
@@ -15,10 +15,11 @@ void Card:: Set(string Name,string Admission,string Id,char Gender){
 ostream & operator<<(ostream &out, const Card &c)
 {
 	out << setfill('0');
-	out << c.name << setw(2) << c.gender <<  c.id << c.admisssion<<'\t';
+	out << c.name << setw(2) << c.gender <<  c.id << c.admission<<'\t';
 	return out;
 }
-School::School(string Schoolname):schoolname(Schoolname){
+////////////////////////////
+School::School( string Schoolname):schoolname(Schoolname){
 	
 }
 void School::Set(string Schoolname){
