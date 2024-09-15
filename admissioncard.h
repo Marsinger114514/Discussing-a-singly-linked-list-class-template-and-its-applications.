@@ -2,7 +2,8 @@
 #define ADMISSIONCARD_H
 #include "LinkList.h"
 #include <iomanip>
-class School;
+
+class school;
 
 class Card
 {
