@@ -11,7 +11,7 @@ class Card
 public:
 	Card( string Name="noname", string Admission="00000000", string Id="noid", char Gender="m");
 	void Set(string Name,string Admission,string Id,char Gender);
-	friend ostream & operator<<(ostream &out, const BWB &b);
+	friend ostream & operator<<(ostream &out, const Card &b);
 	friend class School;
 
 private:
