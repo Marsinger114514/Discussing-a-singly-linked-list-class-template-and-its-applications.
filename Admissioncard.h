@@ -3,6 +3,7 @@
 #include "LinkList.h"
 #include <iomanip>
 
+
 class school;
 
 class Card
