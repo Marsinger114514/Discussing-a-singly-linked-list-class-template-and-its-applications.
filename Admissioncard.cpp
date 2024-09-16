@@ -29,7 +29,7 @@ void School::AppendCard(const Card &c)
 {
 	Card y(c);
 	link.GoBottom();
-	link.Append(y);				//在表尾追加考生结点
+	link.Append(y);				//在表尾追加准考证信息结点
 }
 void School:: Display(std::ostream &out) const
     {
