@@ -1,4 +1,4 @@
-#include "admissioncard.h"
+#include "Admissioncard.h"
 #include <iomanip>
 Card::Card( string Name, string Admission, string Id, char Gender):name(Name),admission(Admission),id(Id),gender(Gender){
 	
