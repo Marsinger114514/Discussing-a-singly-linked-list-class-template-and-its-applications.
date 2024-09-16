@@ -6,20 +6,20 @@
 
 class school;
 
-class Card
+class Card   //准考证类
 {
 public:
 	Card( string Name="noname", string Admission="00000000", string Id="noid", char Gender='m');
 	void Set(string Name,string Admission,string Id,char Gender);
-	friend ostream & operator<<(ostream &out, const Card &c);
+	friend ostream & operator<<(ostream &out, const Card &c); //输出重载函数
 	friend class School;
 
 private:
-	string name,admission,id;
+	string name,admission,id; //姓名，准考证号，身份证号
 	char gender;		
 };
 
-class School
+class School //学校类
 {
 public:
 	School(string Schoolname="noname");
@@ -27,10 +27,10 @@ public:
 	operator string() const;
 	void Show(ostream &out) const;
 	friend ostream & operator<<(ostream &out, const School &s);
-    void Display(std::ostream &out) const; 
+        void Display(std::ostream &out) const; //显示学校的函数
    
 private:
-	string schoolname;
+	string schoolname;//学校名称
 	LinkList<Card> link;
 };
 
