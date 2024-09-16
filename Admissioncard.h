@@ -25,9 +25,9 @@ public:
 	School(string Schoolname="noname");
 	void Set(string Schoolname);
 	operator string() const;
-	void Show(ostream &out) const;
+	void Show(ostream &out) const;//显示同一学校的不同考生的链表
 	friend ostream & operator<<(ostream &out, const School &s);
-        void Display(std::ostream &out) const; //显示学校的函数
+        void Display(std::ostream &out) const; //显示不同学校的链表
    
 private:
 	string schoolname;//学校名称
