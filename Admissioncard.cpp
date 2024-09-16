@@ -25,9 +25,15 @@ School::School( string Schoolname):schoolname(Schoolname){
 void School::Set(string Schoolname){
 	schoolname=Schoolname;
 }
+void School::AppendCard(const Card &c)
+{
+	Card y(c);
+	link.GoBottom();
+	link.Append(y);				//åœ¨è¡¨å°¾è¿½åŠ è€ƒç”Ÿç»“ç‚¹
+}
 void School:: Display(std::ostream &out) const
     {
-        out << "¸ÃÐ£¿¼ÉúÐÅÏ¢£º" << std::endl;
+        out << "è¯¥æ ¡è€ƒç”Ÿä¿¡æ¯ï¼š" << std::endl;
         link.PutList(out);
     }
 School::operator string() const
@@ -36,12 +42,12 @@ School::operator string() const
 }
 void School::Show(ostream &out) const
 {
-	out << "Ñ§Ð£" << schoolname << endl;
+	out << "å­¦æ ¡" << schoolname << endl;
 }
 ostream & operator<<(ostream &out, const School &s)
 {
 	s.Show(out);
-	out << "   ÐÕÃû\tÐÔ±ð\tÉí·ÝÖ¤ºÅ\t×¼¿¼Ö¤ºÅ" << endl;
+	out << "   å§“å\tæ€§åˆ«\tèº«ä»½è¯å·\tå‡†è€ƒè¯å·" << endl;
 	s.link.PutList(out);
 	return out;
 }
