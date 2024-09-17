@@ -121,7 +121,7 @@ LinkList<T> & LinkList<T>::operator=(const LinkList &list)// (深)赋值运算符函数
 template <typename T>
 void LinkList<T>::PutList(ostream &out) const	// 输出链表所有结点的数据到引用out所绑定的ostream对象，该对象可以是cout，也可以是文件对象
 {
-	out << '(' << num << ')' << endl;			// 首先输出（或保存至文件）结点的个数
+	out << L'(' << num << ')' << endl;			// 首先输出（或保存至文件）结点的个数
 	for(Node<T> *p=head; p!=NULL; p=p->next)
 		out << p->data << endl;
 }
@@ -333,7 +333,7 @@ Node<T> *LinkList<T>::CurNode()					// 返回当前结点的地址（NULL表示无当前结点）
 template <typename T>
 T & LinkList<T>::CurData() throw(int)			// 引用返回当前结点数据域成员，函数调用表达式可做左值
 {
-	if(cur_node!=NULL)
+	if(cur_node!=nullptr)
 		return cur_node->data;
 	else
 		throw -1;
