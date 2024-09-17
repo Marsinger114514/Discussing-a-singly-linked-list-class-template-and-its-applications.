@@ -1,52 +1,58 @@
-#include "Admissioncard.h"
+#include "admissioncard.h"
 #include <iomanip>
-Card::Card( const char* Name,  char Gender,const char* Admission, const char* Id):name(Name),admission(Admission),id(Id),gender(Gender){
+#include<string>
+Card::Card( string Name, string Admission, string Id, string Gender):name(Name),admission(Admission),id(Id),gender(Gender){
 
-}                                                                                 //初始化
+}
 
-void Card::Set(const char* Name,char Gender,const char* Admission,const char* Id){
-    name=Name;
-    admission=Admission;
-    id=Id;
-    gender=Gender;
+void Card:: Set(string Name,string Gender,string Id,string Admission){
+	name=Name;
+	admission=Admission;
+	id=Id;
+	gender=Gender;
 }
 
 
 ostream & operator<<(ostream &out, const Card &c)
 {
-    out << setfill('2');
-    out << c.name << setw(2) << c.gender <<  c.admission << c.id<<'\t';       //输出考生信息
-    return out;
+ 
+	out << c.name ;
+	out<<'\t'<< c.gender ;
+	out<< '\t'<< c.id;
+	out<<'\t' <<setw(9)<<c.admission;
+	return out;
 }
-////////////////////////////
-School::School( const char* Schoolname):schoolname(Schoolname){
+School::School(string Schoolname):schoolname(Schoolname){
 
-}
-void School::Set(const char* Schoolname){                //初始化
-    schoolname=Schoolname;
 }
 void School::AppendCard(const Card &c)
 {
-    Card y(c);                                  //创建新对象
-    link.Append(y);				    //在表尾追加准考证信息结点
+
+	Card y(c);
+//	link.GoBottom();
+	link.Append(y);				
+}
+
+void School::Set(string Schoolname){
+	schoolname=Schoolname;
 }
 void School:: Display(std::ostream &out) const
 {
-    out << "该校准考证信息：" << std::endl;
-    link.PutList(out);                          //输出准考证信息链表
+	out << "该校考生信息：" << std::endl;
+	link.PutList(out);
 }
 School::operator string() const
 {
-    return schoolname;
+	return schoolname;
 }
 void School::Show(ostream &out) const
 {
-    out << "学校：" << schoolname << endl;
+	out << "学校名称：" << schoolname << endl;
 }
 ostream & operator<<(ostream &out, const School &s)
 {
-    s.Show(out);                                //显示学校名称
-    out << "   姓名\t性别\t身份证号\t准考证号" << endl;
-    s.link.PutList(out);                        //输出考生准考证信息链表
-    return out;
+	s.Show(out);
+	out << "姓名\t性别\t身份证号\t准考证号" << endl;
+	s.link.PutList(out);
+	return out;
 }
