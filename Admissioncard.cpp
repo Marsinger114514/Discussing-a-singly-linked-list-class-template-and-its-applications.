@@ -22,7 +22,7 @@ ostream & operator<<(ostream &out, const Card &c)                              /
 	out<<'\t' <<setw(9)<<c.admission;
 	return out;
 }
-School::School(string Schoolname):schoolname(Schoolname {       //构造函数
+School::School(string Schoolname):schoolname(Schoolname) {       //构造函数
 
 }
 void School::AppendCard(const Card &c)                                        
