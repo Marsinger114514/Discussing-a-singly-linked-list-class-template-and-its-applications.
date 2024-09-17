@@ -42,8 +42,8 @@ int Choice(const char *prompt, const char *options)		// 函数定义。输出提示信息pr
 
 int main()
 {
-	void AdmissionTest();
-	int key;
+	void AdmissionTest();//声明测试函数
+	int key;				//定义一个变量用于选择
 	while(true)
 	{
 		cout << "\n\n单向链表类模板测试" << endl;

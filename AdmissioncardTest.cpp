@@ -6,14 +6,14 @@ using namespace std;
 
 void AdmissionTest()
 {
-    LinkList<School> uLink;
+    LinkList<School> uLink;          //定义链表和结点
     School x_school;
     Node<School> *pU;
     Card x_card;
     string schoolname, name, admission, id, str;
     string gender;                  // 学校名，姓名，准考证号，身份证号，性别
-    int choice;
-    bool continueMainLoop = true;
+    int choice;                     //用于选择行为
+    bool continueMainLoop = true;   //定义一个变量用于控制循环
 
     while (continueMainLoop)
     {
@@ -30,7 +30,7 @@ void AdmissionTest()
             uLink.Append(x_school);
         }
 
-        pU = uLink.Locate(string(x_school), true);
+        pU = uLink.Locate(string(x_school), true);  //找到结点的位置
 
         if (pU == nullptr)
         {
@@ -70,15 +70,13 @@ void AdmissionTest()
                 }
                 break;
             case 2:
-                cout << uLink.CurData() << endl;
+                cout << uLink.CurData() << endl; //输出
                 break;
             case 3:
                 {
                     cout << "所有考生信息：" << endl;
-                    for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip())
+                    for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip())   //循环遍历输出
                     {
-                        
-                        
                        cout << uLink.CurData() << endl;
                     }
                 }
