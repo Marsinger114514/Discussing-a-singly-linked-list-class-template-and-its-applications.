@@ -3,9 +3,9 @@
 #include<string>
 Card::Card( string Name, string Admission, string Id, string Gender):name(Name),admission(Admission),id(Id),gender(Gender){
 
-}                                                                              //æž„é€ å‡½æ•°
+}                                                                              //¹¹Ôìº¯Êý
 
-void Card:: Set(string Name,string Gender,string Id,string Admission){         //èµ‹å€¼
+void Card:: Set(string Name,string Gender,string Id,string Admission){         //¸³Öµ
 	name=Name;
 	admission=Admission;
 	id=Id;
@@ -13,7 +13,7 @@ void Card:: Set(string Name,string Gender,string Id,string Admission){         /
 }
 
 
-ostream & operator<<(ostream &out, const Card &c)                              //æŒ‰è¡Œè¾“å‡ºå§“åï¼Œæ€§åˆ«èº«ä»½è¯å·ï¼Œå‡†è€ƒè¯å·
+ostream & operator<<(ostream &out, const Card &c)                              //°´ÐÐÊä³öÐÕÃû£¬ÐÔ±ðÉí·ÝÖ¤ºÅ£¬×¼¿¼Ö¤ºÅ
 {
  
 	out << c.name ;
@@ -22,37 +22,37 @@ ostream & operator<<(ostream &out, const Card &c)                              /
 	out<<'\t' <<setw(9)<<c.admission;
 	return out;
 }
-School::School(string Schoolname):schoolname(Schoolname) {       //æž„é€ å‡½æ•°
+School::School(string Schoolname):schoolname(Schoolname) {       //¹¹Ôìº¯Êý
 
 }
 void School::AppendCard(const Card &c)                                        
 {
 
-	Card y(c);                                               //åˆ›å»ºæ–°å¯¹è±¡y 
+	Card y(c);                                               //´´½¨ÐÂ¶ÔÏóy 
 //	link.GoBottom();
-	link.Append(y);				                 //è¿½åŠ èŠ‚ç‚¹
+	link.Append(y);				                 //×·¼Ó½Úµã
 }
 
-void School::Set(string Schoolname){                             //èµ‹å€¼
+void School::Set(string Schoolname){                             //¸³Öµ
 	schoolname=Schoolname;
 }
 void School:: Display(std::ostream &out) const
 {
-	out << "è¯¥æ ¡è€ƒç”Ÿä¿¡æ¯ï¼š" << std::endl;
+	out << "¸ÃÐ£¿¼ÉúÐÅÏ¢£º" << std::endl;
 	link.PutList(out);                                     
 }
-School::operator string() const                                  //ç¡®ä¿å­¦æ ¡åç§°ä»¥stringè¾“å‡º
+School::operator string() const                                  //È·±£Ñ§Ð£Ãû³ÆÒÔstringÊä³ö
 {
 	return schoolname;
 }
 void School::Show(ostream &out) const                          
 {
-	out << "å­¦æ ¡åç§°ï¼š" << schoolname << endl;
+	out << "Ñ§Ð£Ãû³Æ£º" << schoolname << endl;
 }
 ostream & operator<<(ostream &out, const School &s)
 {
 	s.Show(out);
-	out << "å§“å\tæ€§åˆ«\tèº«ä»½è¯å·\t å‡†è€ƒè¯å·" << endl;
-	s.link.PutList(out);                                     //è¾“å‡ºé“¾è¡¨
+	out << "ÐÕÃû\tÐÔ±ð\tÉí·ÝÖ¤ºÅ\t ×¼¿¼Ö¤ºÅ" << endl;
+	s.link.PutList(out);                                     //Êä³öÁ´±í
 	return out;
 }

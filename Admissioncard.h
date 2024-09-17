@@ -7,29 +7,29 @@ class School;
 class Card
 {
 public:
-    Card( string Name="åŒ¿å", string Admission="00000000", string Id="00000000", string Gender="ç”·");// æ„é€ å‡½æ•°åˆå§‹åŒ–
-    void Set(string Name,string Gender,string Id,string Admission);                                 //  è®¾ç½®å‡½æ•°
-    friend ostream & operator<<(ostream &out, const Card &b);                                       //  è¾“å‡ºæµé‡è½½å‡½æ•°
-    friend class School;                                                                            //  å‹å…ƒç±»
+    Card( string Name="ÄäÃû", string Admission="00000000", string Id="00000000", string Gender="ÄĞ");// ¹¹Ôìº¯Êı³õÊ¼»¯
+    void Set(string Name,string Gender,string Id,string Admission);                                 //  ÉèÖÃº¯Êı
+    friend ostream & operator<<(ostream &out, const Card &b);                                       //  Êä³öÁ÷ÖØÔØº¯Êı
+    friend class School;                                                                            //  ÓÑÔªÀà
 
 private:  
-    string name,admission,id;                                                                       //å§“åï¼Œå‡†è€ƒè¯å·ï¼Œèº«ä»½è¯å·
-    string gender;                                                                                  //æ€§åˆ«
+    string name,admission,id;                                                                       //ĞÕÃû£¬×¼¿¼Ö¤ºÅ£¬Éí·İÖ¤ºÅ
+    string gender;                                                                                  //ĞÔ±ğ
 };
 
 class School
 {
 public:
-    School(string Schoolname="æ— å");                                    //æ„é€ å‡½æ•°
-    void Set(string Schoolname);                                         //è®¾ç½®å‡½æ•°
-    operator string() const;                                             //é‡è½½å­—ç¬¦ä¸²å‡½æ•°
-    void Show(ostream &out) const;                                       //æ˜¾ç¤ºå­¦æ ¡åç§°
-    friend ostream & operator<<(ostream &out, const School &s);          //é‡è½½è¾“å‡ºæµå‡½æ•°
-    void Display(std::ostream &out) const;                               //æ˜¾ç¤ºå­¦æ ¡è€ƒç”Ÿä¿¡æ¯
-    void AppendCard(const Card &c);                                      //è¿½åŠ å‡†è€ƒç”Ÿç±»ç»“ç‚¹
+    School(string Schoolname="ÎŞÃû");                                    //¹¹Ôìº¯Êı
+    void Set(string Schoolname);                                         //ÉèÖÃº¯Êı
+    operator string() const;                                             //ÖØÔØ×Ö·û´®º¯Êı
+    void Show(ostream &out) const;                                       //ÏÔÊ¾Ñ§Ğ£Ãû³Æ
+    friend ostream & operator<<(ostream &out, const School &s);          //ÖØÔØÊä³öÁ÷º¯Êı
+    void Display(std::ostream &out) const;                               //ÏÔÊ¾Ñ§Ğ£¿¼ÉúĞÅÏ¢
+    void AppendCard(const Card &c);                                      //×·¼Ó×¼¿¼ÉúÀà½áµã
 private:
-    string schoolname;                                                   //å­¦æ ¡åç§°
-    LinkList<Card>link;                                                  //é“¾è¡¨ç±»
+    string schoolname;                                                   //Ñ§Ğ£Ãû³Æ
+    LinkList<Card>link;                                                  //Á´±íÀà
 };
 
 #endif
