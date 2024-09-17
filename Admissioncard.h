@@ -7,7 +7,7 @@ class School;
 class Card
 {
 public:
-    Card( string Name="noname", string Admission="00000000", string Id="no id", string Gender="m");
+    Card( string Name="ÄäÃû", string Admission="00000000", string Id="00000000", string Gender="ÄĞ");
     void Set(string Name,string Gender,string Id,string Admission);
     friend ostream & operator<<(ostream &out, const Card &b);
     friend class School;
@@ -20,7 +20,7 @@ private:
 class School
 {
 public:
-    School(string Schoolname="noname");
+    School(string Schoolname="Î´Öª");
     void Set(string Schoolname);
     operator string() const;
     void Show(ostream &out) const;
