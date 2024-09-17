@@ -52,7 +52,7 @@ void School::Show(ostream &out) const
 ostream & operator<<(ostream &out, const School &s)
 {
 	s.Show(out);
-	out << "姓名\t性别\t身份证号\t准考证号" << endl;
+	out << "姓名\t性别\t身份证号\t 准考证号" << endl;
 	s.link.PutList(out);
 	return out;
 }
