@@ -17,7 +17,7 @@ void schoolTest()
 		{
 			cout<<"1 -- 新增学校" <<endl; //检测AppendCard 
 			cout<<"2 -- 查询学校" <<endl;
-			cout<<"3 --展示学校"<<endl;//检测display 
+			cout<<"3 -- 展示学校"<<endl;//检测display
 			int choice;
 			cin>>choice;
 			cout<<endl;
@@ -87,7 +87,7 @@ void findcard()   //检测ostream
 	else cout<<pu;    //输出所查询的信息 
 }
 
-void admissiontest()
+void AdmissionTest()
 {
 	cout<<"请选择："<<endl;
 	cout<<"1--新建准考证信息"<<endl;
