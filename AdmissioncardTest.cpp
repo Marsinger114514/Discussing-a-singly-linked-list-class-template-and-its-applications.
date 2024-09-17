@@ -13,7 +13,7 @@ void AdmissionTest()
     int choice;
     while(true)
     {
-        cout << "\n请输入学校(请输入四位汉字，直接回车则退出)：";
+        cout << "\n请输入学校(请输入汉字，直接回车则退出)：";
         cin.getline(schoolname, 80);
         if (schoolname[0] == '\0') {
             cout << "退出录入程序。" << endl;
