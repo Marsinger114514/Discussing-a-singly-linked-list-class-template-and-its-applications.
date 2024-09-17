@@ -7,29 +7,29 @@ class School;
 class Card
 {
 public:
-    Card( string Name="����", string Admission="00000000", string Id="00000000", string Gender="��");
-    void Set(string Name,string Gender,string Id,string Admission);
-    friend ostream & operator<<(ostream &out, const Card &b);
-    friend class School;
+    Card( string Name="匿名", string Admission="00000000", string Id="00000000", string Gender="男");// 构造函数初始化
+    void Set(string Name,string Gender,string Id,string Admission);                                 //  设置函数
+    friend ostream & operator<<(ostream &out, const Card &b);                                       //  输出流重载函数
+    friend class School;                                                                            //  友元类
 
-private:
-    string name,admission,id;
-    string gender;
+private:  
+    string name,admission,id;                                                                       //姓名，准考证号，身份证号
+    string gender;                                                                                  //性别
 };
 
 class School
 {
 public:
-    School(string Schoolname="δ֪");
-    void Set(string Schoolname);
-    operator string() const;
-    void Show(ostream &out) const;
-    friend ostream & operator<<(ostream &out, const School &s);
-    void Display(std::ostream &out) const;
-    void AppendCard(const Card &c);
+    School(string Schoolname="无名");                                    //构造函数
+    void Set(string Schoolname);                                         //设置函数
+    operator string() const;                                             //重载字符串函数
+    void Show(ostream &out) const;                                       //显示学校名称
+    friend ostream & operator<<(ostream &out, const School &s);          //重载输出流函数
+    void Display(std::ostream &out) const;                               //显示学校考生信息
+    void AppendCard(const Card &c);                                      //追加准考生类结点
 private:
-    string schoolname;
-    LinkList<Card>link;
+    string schoolname;                                                   //学校名称
+    LinkList<Card>link;                                                  //链表类
 };
 
 #endif
