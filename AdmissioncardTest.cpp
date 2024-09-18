@@ -11,6 +11,7 @@ void AdmissionTest()
     Node<School> *pU;
     Card x_card;
     string schoolname, name, admission, id, str;
+    int i;
     string gender;                  // 学校名，姓名，准考证号，身份证号，性别
     int choice;                     //用于选择行为
     bool continueMainLoop = true;   //定义一个变量用于控制循环
@@ -26,7 +27,7 @@ void AdmissionTest()
         }
         else {
             x_school.Set(schoolname);
-            cout << "设置学校名称为: " << schoolname << endl;
+            cout << "学校名称为: " << schoolname << endl;
             uLink.Append(x_school);
         }
 
@@ -75,9 +76,11 @@ void AdmissionTest()
             case 3:
                 {
                     cout << "所有考生信息：" << endl;
-                    for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip())   //循环遍历输出
+                    for (pU = uLink.GoTop(),i=1; ; pU = uLink.Skip(),i++)   //循环遍历输出
                     {
                        cout << uLink.CurData() << endl;
+                        if(i==uLink.NumNodes())
+                            break;
                     }
                 }
                 break;

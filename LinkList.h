@@ -442,4 +442,6 @@ void LinkList<T>::Reverse()						// 链表结点倒置
 		head = p;								// 将卸下的结点插入新链表的首部
 	}											// 注意：由于只修改了各结点的next的值，cur_node不变
 }
+
+
 #endif
