@@ -22,10 +22,11 @@ public:
 		data = node.data;				// 结点间赋值时，仅改变数据域，不改变链接方式
 		return *this;
 	}
-	friend class LinkList<T>;			// 声明友类，以使LinkList<T>类的成员函数访问结点类的私有成员data和next
-private:
-	T data;								// 最里层：数据域（形式数据类型）
-	Node<T> *next;						// 指针域
+	friend class LinkList<T>;// 声明友类，以使LinkList<T>类的成员函数访问结点类的私有成员data和next
+
+//private:// 最里层：数据域（形式数据类型）
+	Node<T> *next;							// 指针域
+	T data;
 };
 
 template <typename T> class LinkList			// 单向链表类模板设计

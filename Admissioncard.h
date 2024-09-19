@@ -2,8 +2,6 @@
 #define ADMISSIONCARD_H
 #include "LinkList.h"
 #include <iomanip>
-class School;
-
 class Card
 {
 public:
@@ -16,7 +14,6 @@ private:
     string name,admission,id;                                                                       //姓名，准考证号，身份证号
     string gender;                                                                                  //性别
 };
-
 class School
 {
 public:
@@ -27,7 +24,6 @@ public:
     friend ostream & operator<<(ostream &out, const School &s);          //重载输出流函数
     void Display(std::ostream &out) const;                               //显示学校考生信息
     void AppendCard(const Card &c);                                      //追加准考生类结点
-private:
     string schoolname;                                                   //学校名称
     LinkList<Card>link;                                                  //链表类
 };
