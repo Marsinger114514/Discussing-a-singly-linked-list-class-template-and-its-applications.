@@ -62,6 +62,7 @@ void AdmissionTest()
             cout << "1 -- 录入准考证数据" << endl;
             cout << "2 -- 查询该校考生信息" << endl;
             cout << "3 -- 查询所有考生信息" << endl;
+            cout << "4 -- 排序该校考生信息" << endl;
             cout << "0 -- 返回" << endl;
             cout << "请选择：";
             choice = getche() - '0';
@@ -100,6 +101,15 @@ void AdmissionTest()
                    for (pU = uLink.GoTop();p>0;pU = uLink.Skip(),p--)
                        ;
                 }
+                break;
+                case 4:
+                    {     //排序操作
+                   cout << "请选择排序方式（“1”：升序，“2”：降序）"<< endl;
+                   int ascending_num = getche() - '0';
+                   bool ascending = (ascending_num == 1);
+                   uLink.CurData().SortCards(x_card,ascending);
+                    cout << uLink.CurData() << endl;
+               }
                 break;
             default:
                 cout << "无效的选择，请重新输入！" << endl;

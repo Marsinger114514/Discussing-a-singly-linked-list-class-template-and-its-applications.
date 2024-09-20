@@ -49,6 +49,11 @@ void School::Show(ostream &out) const
 {
 	out << "Ñ§Ð£Ãû³Æ£º" << schoolname << endl;
 }
+void School::SortCards(const Card &c,bool ascending_num) {
+
+      Card y(c);
+	link.Sort(y,ascending_num);
+}
 ostream & operator<<(ostream &out, const School &s)
 {
 	s.Show(out);
