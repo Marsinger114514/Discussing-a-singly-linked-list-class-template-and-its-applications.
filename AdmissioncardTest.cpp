@@ -104,7 +104,7 @@ void AdmissionTest()
                 break;
                 case 4:
                     {     //ÅÅÐò²Ù×÷
-                   cout << "ÇëÑ¡ÔñÅÅÐò·½Ê½£¨¡°1¡±£ºÉýÐò£¬¡°2¡±£º½µÐò£©"<< endl;
+                   cout << "ÇëÑ¡ÔñÅÅÐò·½Ê½£¨¸ù¾Ý×¼¿¼Ö¤ºÅÅÅÐò¡°1¡±£ºÉýÐò£¬¡°2¡±£º½µÐò£©"<< endl;
                    int ascending_num = getche() - '0';
                    bool ascending = (ascending_num == 1);
                    uLink.CurData().SortCards(x_card,ascending);
