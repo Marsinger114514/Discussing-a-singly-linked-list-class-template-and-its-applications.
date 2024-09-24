@@ -79,7 +79,7 @@ bool School::RemoveCardByAdmission(const string& admission) {
 		if (current->data.GetAdmission() == admission) {
 			if (prev == nullptr) {
 				// 删除头节点
-				link.DeleteHead(); // 假设 LinkList 有 DeleteHead 方法
+				link.DeleteHead();
 			} else {
 				// 删除中间或尾节点
 				prev->next = current->next;
