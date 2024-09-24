@@ -152,7 +152,7 @@ void AdmissionTest()
                         cin.ignore();
                         Card* card = uLink.CurData().FindCardByAdmission(admission);
                         if (card != nullptr) {
-                            cout << "请输入新的信息（姓名 性别 准考证号 身份证号）: ";
+                            cout << "请输入新的信息（学生姓名 学生性别 学生准考证号（8位） 学生身份证号（8位））: ";
                             cin >> name >> gender >> admission >> id;
                             card->Set(name, gender, admission, id);
                             cout << "准考证信息已更新！" << endl;
