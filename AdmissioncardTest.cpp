@@ -8,7 +8,7 @@ void AdmissionTest()
 {
     LinkList<School> uLink;          //定义链表和结点
     School x_school;
-    Node<School> *pU;
+    Node<School> *pU,*p1;
     Card x_card;
     int p;
     string schoolname, name, admission, id, str;
@@ -115,24 +115,44 @@ void AdmissionTest()
                 break;
             case 5:
                 {
-                    cout << "请输入准考证号( 按准考证号删除 ）: ";        // 按准考证号删除
-                    string admissionToDelete;
-                    cin >> admissionToDelete;
+                    cout << "请选择删除方式 （“1”； 根据学校，“2”：根据准考证号）" << endl;
+                    int DeleteChoice = getche() - '0';
+                    cout << endl;
+                    if (DeleteChoice == 1) {
+                        cout << "请输入学校名: ";
+                        string schoolnameToDelete;
+                        getline(cin, schoolnameToDelete);
+                        p1 = uLink.Locate(string(schoolnameToDelete), true);
+                        if (p1 != nullptr) {
+                            uLink.DeleteCurNode();
+                            cout << "学校为 " << schoolnameToDelete << " 的考生信息已删除！" << endl;
+                        }else {
+                            cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
+                        }
 
-                    bool cardFound = false;
-                    for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip()) {
-                        if (pU->data.RemoveCardByAdmission(admissionToDelete)) {            // 调用学校的删除准考证方法
-                            cout << "准考证号 " << admissionToDelete << " 的考生信息已删除！" << endl;
-                            cardFound = true;
-                            break;
+                    }else if (DeleteChoice == 2) {
+                        cout << "请输入准考证号: ";        // 按准考证号删除
+                        string admissionToDelete;
+                        cin >> admissionToDelete;
+
+                        bool cardFound = false;
+                        for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip()) {
+                            if (pU->data.RemoveCardByAdmission(admissionToDelete)) {            // 调用学校的删除准考证方法
+                                cout << "准考证号 " << admissionToDelete << " 的考生信息已删除！" << endl;
+                                cardFound = true;
+                                break;
                             }
                         }
 
-                    if (!cardFound) {
-                        cout << "未找到准考证号为 " << admissionToDelete << " 的考生信息！" << endl;
+                        if (!cardFound) {
+                            cout << "未找到准考证号为 " << admissionToDelete << " 的考生信息！" << endl;
                         }
-                }
+                    }
                 break;
+
+                    }
+
+
             case 6:
                 {
                     // 修改当前结点
