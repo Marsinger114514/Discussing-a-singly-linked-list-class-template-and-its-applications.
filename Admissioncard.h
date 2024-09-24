@@ -1,7 +1,9 @@
+//Admission.h
 #ifndef ADMISSIONCARD_H
 #define ADMISSIONCARD_H
 #include "LinkList.h"
 #include <iomanip>
+#include <bits/stdc++.h>
 class Card
 {
 public:
@@ -23,6 +25,8 @@ public:
     bool operator>=(const Card& other) const {
         return admission >= other.admission;
     }
+    
+    operator string() const;
 private:
     string name,admission,id;                                                                       //姓名，准考证号，身份证号
     string gender;                                                                                  //性别
@@ -38,6 +42,8 @@ public:
     void Display(std::ostream &out) const;                               //显示学校考生信息
     void AppendCard(const Card &c);                                      //追加准考生类结点
     void SortCards(const Card &c,bool ascending_num);
+    void DeleteCards(Card &c);											 //删除考生信息
+	void ModifyCards(Card &c);											 //修改考生信息 
     string schoolname;                                                   //学校名称
     LinkList<Card>link;                                                  //链表类
 };

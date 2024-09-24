@@ -1,3 +1,4 @@
+//AdmissioncardTest.cpp
 #include <conio.h>
 #include "Admissioncard.h"
 #include "linklist.h"
@@ -63,6 +64,8 @@ void AdmissionTest()
             cout << "2 -- 查询该校考生信息" << endl;
             cout << "3 -- 查询所有考生信息" << endl;
             cout << "4 -- 排序该校考生信息" << endl;
+            cout << "5 -- 删除该校考生信息" << endl;
+            cout << "6 -- 修改该校考生信息" << endl;
             cout << "0 -- 返回" << endl;
             cout << "请选择：";
             choice = getche() - '0';
@@ -111,6 +114,23 @@ void AdmissionTest()
                     cout << uLink.CurData() << endl;
                }
                 break;
+            	case 5:
+            		{	 //删除操作 
+            			cout<<"请输入所要删除考生的准考证号（8位）：";
+						cin>>admission;
+						x_card.Set(admission,admission,admission,admission);
+						uLink.CurData().DeleteCards(x_card); 
+					}
+				case 6:
+					{	 //修改操作 
+						cout<<"请输入所要修改考生的准考证号（8位）：";
+						cin>>admission;
+						cout << "请输入修改后的（学生姓名 学生性别 学生准考证号（8位） 学生身份证号（8位））: ";
+                    	cin >> name >> gender >> admission >> id;
+                    	cin.ignore(); 
+                    	x_card.Set(name, gender, admission, id);
+                    	uLink.CurData().ModifyCards(x_card);
+					}
             default:
                 cout << "无效的选择，请重新输入！" << endl;
                 break;

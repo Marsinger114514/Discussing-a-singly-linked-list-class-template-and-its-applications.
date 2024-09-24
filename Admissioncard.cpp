@@ -1,6 +1,8 @@
+//Admissioncard.cpp
 #include "admissioncard.h"
 #include <iomanip>
 #include<string>
+#include <bits/stdc++.h>
 Card::Card( string Name, string Admission, string Id, string Gender):name(Name),admission(Admission),id(Id),gender(Gender){
 
 }                                                                              //构造函数
@@ -60,4 +62,23 @@ ostream & operator<<(ostream &out, const School &s)
 	out << "姓名\t性别\t身份证号\t 准考证号" << endl;
 	s.link.PutList(out);                                     //输出链表
 	return out;
+}
+
+ Card::operator string() const
+{
+    return admission;
+}
+
+void School::DeleteCards(Card &c)
+{
+	Card y(c);
+	link.Locate(string(y),true); 							//定位要删除的节点 
+	link.DeleteCurNode();
+}
+
+void School::ModifyCards(Card &c)
+{
+	Card y(c);
+	link.Locate(string(y),true); 							//定位要修改的节点 
+	link.ModifyData(y);
 }
