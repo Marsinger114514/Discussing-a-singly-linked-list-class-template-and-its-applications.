@@ -41,10 +41,11 @@ public:
     void Display(std::ostream &out) const;                               //显示学校考生信息
     void AppendCard(const Card &c);                                      //追加准考生类结点
     void SortCards(const Card &c,bool ascending_num);
-    string schoolname;                                                   //学校名称
-    LinkList<Card>link;                                                  //链表类
     Card* FindCardByAdmission(const string& admission);
     bool RemoveCardByAdmission(const string& admission);
+private:
+    string schoolname;                                                   //学校名称
+    LinkList<Card>link;                                                  //链表类
 };
 
 #endif
