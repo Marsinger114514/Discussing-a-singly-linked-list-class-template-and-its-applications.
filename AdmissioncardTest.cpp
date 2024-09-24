@@ -12,7 +12,7 @@ void AdmissionTest()
     Card x_card;
     int p;
     string schoolname, name, admission, id, str;
-    int i;
+    int i,e;
     string gender;                  // 学校名，姓名，准考证号，身份证号，性别
     int choice;                     //用于选择行为
     bool continueMainLoop = true;  //定义一个变量用于控制循环
@@ -63,6 +63,8 @@ void AdmissionTest()
             cout << "2 -- 查询该校考生信息" << endl;
             cout << "3 -- 查询所有考生信息" << endl;
             cout << "4 -- 排序该校考生信息" << endl;
+            cout << "5 -- 删除当前结点" << endl;
+            cout << "6 -- 修改当前结点" << endl;
             cout << "0 -- 返回" << endl;
             cout << "请选择：";
             choice = getche() - '0';
@@ -86,7 +88,7 @@ void AdmissionTest()
                 }
                 break;
             case 2:
-                cout << uLink.CurData() << endl; //输出
+                    cout << uLink.CurData() << endl; //输出
                 break;
             case 3:
                 {
@@ -98,21 +100,72 @@ void AdmissionTest()
                         if(i==uLink.NumNodes())
                             break;
                     }
-                   for (pU = uLink.GoTop();p>0;pU = uLink.Skip(),p--)
-                       ;
+                    for (pU = uLink.GoTop();p>0;pU = uLink.Skip(),p--)
+                        ;
                 }
                 break;
-                case 4:
-                    {     //排序操作
-                   cout << "请选择排序方式（根据准考证号排序   “1”：升序，“2”：降序）"<< endl;
-                   int ascending_num = getche() - '0';
-                   bool ascending = (ascending_num == 1);
-                   uLink.CurData().SortCards(x_card,ascending);
+            case 4:
+                {//排序操作
+                    cout << "请选择排序方式（根据准考证号排序   “1”：升序，“2”：降序）"<< endl;
+                    int ascending_num = getche() - '0';
+                    bool ascending = (ascending_num == 1);
+                    uLink.CurData().SortCards(x_card,ascending);
                     cout << uLink.CurData() << endl;
-               }
+                }
+                break;
+            case 5:
+                {
+                    cout << "请输入准考证号( 按准考证号删除 ）: ";        // 按准考证号删除
+                    string admissionToDelete;
+                    cin >> admissionToDelete;
+
+                    bool cardFound = false;
+                    for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip()) {
+                        if (pU->data.RemoveCardByAdmission(admissionToDelete)) {            // 调用学校的删除准考证方法
+                            cout << "准考证号 " << admissionToDelete << " 的考生信息已删除！" << endl;
+                            cardFound = true;
+                            break;
+                            }
+                        }
+
+                    if (!cardFound) {
+                        cout << "未找到准考证号为 " << admissionToDelete << " 的考生信息！" << endl;
+                        }
+                }
+                break;
+            case 6:
+                {
+                    // 修改当前结点
+                    cout << "请选择修改类型（1: 修改学校信息，2: 修改准考证信息）：";
+                    int modifyChoice = getche() - '0';
+                    cout << endl;
+                    if (modifyChoice == 1) {
+                        // 修改学校信息
+                        cout << "请输入新的学校名称: ";
+                        getline(cin, schoolname);
+                        uLink.CurData().Set(schoolname);
+                        cout << "当前学校名称已修改为: " << schoolname << endl;
+                    } else if (modifyChoice == 2) {
+                        // 修改准考证信息
+                        cout << "请输入要修改的准考证号: ";
+                        cin >> admission;
+                        cin.ignore();
+                        Card* card = uLink.CurData().FindCardByAdmission(admission);
+                        if (card != nullptr) {
+                            cout << "请输入新的信息（姓名 性别 准考证号 身份证号）: ";
+                            cin >> name >> gender >> admission >> id;
+                            card->Set(name, gender, admission, id);
+                            cout << "准考证信息已更新！" << endl;
+                        } else {
+                            cout << "找不到该准考证号的学生！" << endl;
+                        }
+                    } else {
+                        cout << "无效的选择！" << endl;
+                    }
+                }
                 break;
             default:
-                cout << "无效的选择，请重新输入！" << endl;
+                    cout << "无效的选择，请重新输入！" << endl;
                 break;
             }
         }

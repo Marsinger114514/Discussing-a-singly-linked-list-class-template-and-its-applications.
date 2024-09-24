@@ -8,7 +8,10 @@ public:
     Card( string Name="匿名", string Admission="00000000", string Id="00000000", string Gender="男");// 构造函数初始化
     void Set(string Name,string Gender,string Id,string Admission);                                 //  设置函数
     friend ostream & operator<<(ostream &out, const Card &b);                                       //  输出流重载函数
-    friend class School;                                                                            //  友元类
+    friend class School;
+    string GetAdmission() const {
+        return admission;
+    }//  友元类
     bool operator<(const Card& other) const {
         return admission < other.admission; // 根据准考证号进行比较
     }
@@ -40,6 +43,8 @@ public:
     void SortCards(const Card &c,bool ascending_num);
     string schoolname;                                                   //学校名称
     LinkList<Card>link;                                                  //链表类
+    Card* FindCardByAdmission(const string& admission);
+    bool RemoveCardByAdmission(const string& admission);
 };
 
 #endif

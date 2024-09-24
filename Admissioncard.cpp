@@ -61,3 +61,33 @@ ostream & operator<<(ostream &out, const School &s)
 	s.link.PutList(out);                                     //输出链表
 	return out;
 }
+
+Card* School::FindCardByAdmission(const string& admission) {
+	Node<Card>* current = link.GoTop();  // 获取链表头结点
+	while (current != nullptr) {
+		if (current->data.GetAdmission() == admission) {  // 比较准考证号
+			return &(current->data);  // 找到后返回对应的 Card 对象
+		}
+		current = link.Skip();  // 移动到下一个节点
+	}
+	return nullptr;  // 未找到则返回 nullptr
+}
+
+bool School::RemoveCardByAdmission(const string& admission) {
+	Node<Card>* prev = nullptr;
+	for (Node<Card>* current = link.GoTop(); current != nullptr; current = link.Skip()) {
+		if (current->data.GetAdmission() == admission) {
+			if (prev == nullptr) {
+				// 删除头节点
+				link.DeleteHead(); // 假设 LinkList 有 DeleteHead 方法
+			} else {
+				// 删除中间或尾节点
+				prev->next = current->next;
+				delete current; // 释放内存
+			}
+			return true; // 删除成功
+		}
+		prev = current;
+	}
+	return false; // 未找到准考证
+}
