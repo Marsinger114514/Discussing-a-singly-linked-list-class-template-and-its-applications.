@@ -121,6 +121,7 @@ void AdmissionTest()
 						x_card.Set(admission,admission,admission,admission);
 						uLink.CurData().DeleteCards(x_card); 
 					}
+					break;
 				case 6:
 					{	 //修改操作 
 						cout<<"请输入所要修改考生的准考证号（8位）：";
@@ -131,6 +132,7 @@ void AdmissionTest()
                     	x_card.Set(name, gender, admission, id);
                     	uLink.CurData().ModifyCards(x_card);
 					}
+					break;
             default:
                 cout << "无效的选择，请重新输入！" << endl;
                 break;
