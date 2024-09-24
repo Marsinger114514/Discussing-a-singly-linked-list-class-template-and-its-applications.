@@ -43,6 +43,9 @@ public:
     void SortCards(const Card &c,bool ascending_num);
     Card* FindCardByAdmission(const string& admission);
     bool RemoveCardByAdmission(const string& admission);
+    string ReturnSchoolname(const Node<School>* p) {
+        return p->data.schoolname;
+    }
 private:
     string schoolname;                                                   //学校名称
     LinkList<Card>link;                                                  //链表类

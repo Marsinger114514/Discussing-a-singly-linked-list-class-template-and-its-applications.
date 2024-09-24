@@ -33,7 +33,7 @@ void AdmissionTest()
             cout << "学校名称为: " << schoolname << endl;
             bool addOrNot = true;
             for (pU = uLink.GoTop(),i=1; pU != nullptr; pU = uLink.Skip(),i++) {
-                if(schoolname==pU->data.schoolname) {
+                if(schoolname==x_school.ReturnSchoolname(pU)) {
                     addOrNot=false;
                     break;
                 }

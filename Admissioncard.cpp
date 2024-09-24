@@ -5,7 +5,7 @@ Card::Card( string Name, string Admission, string Id, string Gender):name(Name),
 
 }                                                                              //构造函数
 
-void Card:: Set(string Name,string Gender,string Id,string Admission){         //赋值
+void Card:: Set(string Name,string Gender,string Admission ,string Id){         //赋值
 	name=Name;
 	admission=Admission;
 	id=Id;
