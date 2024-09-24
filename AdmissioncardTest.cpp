@@ -12,7 +12,7 @@ void AdmissionTest()
     Card x_card;
     int p;
     string schoolname, name, admission, id, str;
-    int i,e;
+    int i;
     string gender;                  // 学校名，姓名，准考证号，身份证号，性别
     int choice;                     //用于选择行为
     bool continueMainLoop = true;  //定义一个变量用于控制循环
