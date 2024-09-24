@@ -271,7 +271,7 @@ void LinkList<T>::FreeList()					// 释放链表中的所有结点
 template <typename T>
 T LinkList<T>::DeleteCurNode() throw(int)		// 删除当前结点，其下一个结点（成为新的当前结点），值返回被删结点数据域数值
 {
-	if(cur_node==NULL || head==NULL)
+	if(cur_node==nullptr || head==nullptr)
 		throw -1;
 	Node<T> *p;
 	T x;
