@@ -58,7 +58,12 @@ void AdmissionTest()
         while (continueSubLoop)
         {
             cout << endl;
-            uLink.CurData().Show(cout);
+            try {
+                uLink.CurData().Show(cout);
+            }catch (int) {
+                goto L1;
+            }
+
             cout << "1 -- 录入准考证数据" << endl;
             cout << "2 -- 查询该校考生信息" << endl;
             cout << "3 -- 查询所有考生信息" << endl;
@@ -119,7 +124,7 @@ void AdmissionTest()
                     int DeleteChoice = getche() - '0';
                     cout << endl;
                     if (DeleteChoice == 1) {
-                    L2:    cout << "请输入学校名: ";
+                        cout << "请输入学校名: ";
                         string schoolnameToDelete;
                         getline(cin, schoolnameToDelete);
                         p1 = uLink.Locate(string(schoolnameToDelete), true);
@@ -133,26 +138,28 @@ void AdmissionTest()
 
                         }else  {
                             cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
-                            goto L2;
                         }
 
                     }else if (DeleteChoice == 2) {
-                      L3:  cout << "请输入准考证号: ";        // 按准考证号删除
+                            cout << "请输入准考证号: ";        // 按准考证号删除
                         string admissionToDelete;
                         cin >> admissionToDelete;
 
                         bool cardFound = false;
                         for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip()) {
-                            if (pU->data.RemoveCardByAdmission(admissionToDelete)) {            // 调用学校的删除准考证方法
+                            try {if (pU->data.RemoveCardByAdmission(admissionToDelete)) {
+                                // 调用学校的删除准考证方法
                                 cout << "准考证号 " << admissionToDelete << " 的考生信息已删除！" << endl;
                                 cardFound = true;
                                 break;
+                            }
+                            }catch (int){
+                                cout << "无结点可以删除" << endl;
                             }
                         }
 
                         if (!cardFound) {
                             cout << "未找到准考证号为 " << admissionToDelete << " 的考生信息！" << endl;
-                            goto L3;
                         }
                     }else {
                         cout << "无效的选择，请重新输入！" << endl;

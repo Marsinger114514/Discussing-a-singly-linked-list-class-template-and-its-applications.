@@ -46,6 +46,10 @@ public:
     string ReturnSchoolname(const Node<School>* p) {
         return p->data.schoolname;
     }
+    void deletenum() {
+        link.Deletenum();
+    }
+
 private:
     string schoolname;                                                   //学校名称
     LinkList<Card>link;                                                  //链表类
