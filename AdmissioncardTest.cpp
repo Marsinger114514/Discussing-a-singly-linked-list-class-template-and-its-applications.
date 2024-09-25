@@ -119,7 +119,7 @@ void AdmissionTest()
                     int DeleteChoice = getche() - '0';
                     cout << endl;
                     if (DeleteChoice == 1) {
-                        cout << "请输入学校名: ";
+                    L2:    cout << "请输入学校名: ";
                         string schoolnameToDelete;
                         getline(cin, schoolnameToDelete);
                         p1 = uLink.Locate(string(schoolnameToDelete), true);
@@ -131,12 +131,13 @@ void AdmissionTest()
                                 goto L1;
                             }
 
-                        }else {
+                        }else  {
                             cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
+                            goto L2;
                         }
 
                     }else if (DeleteChoice == 2) {
-                        cout << "请输入准考证号: ";        // 按准考证号删除
+                      L3:  cout << "请输入准考证号: ";        // 按准考证号删除
                         string admissionToDelete;
                         cin >> admissionToDelete;
 
@@ -151,7 +152,10 @@ void AdmissionTest()
 
                         if (!cardFound) {
                             cout << "未找到准考证号为 " << admissionToDelete << " 的考生信息！" << endl;
+                            goto L3;
                         }
+                    }else {
+                        cout << "无效的选择，请重新输入！" << endl;
                     }
                 break;
 
