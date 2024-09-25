@@ -65,6 +65,7 @@ public:
 	void Reverse();								// 链表结点倒置
 	bool DeleteHead();                          //删除头结点
 	void Deletenum();
+	int check();
 
 private:
 	Node<T> *head, *cur_node;					// 链表首结点地址（指针）、当前结点地址（指针）
@@ -83,10 +84,9 @@ LinkList<T>::LinkList(int n, const T *array) : head(NULL),cur_node(NULL),num(0)	
 		p = new Node<T>;				// 自动调用Node<T>默认的构造函数创建堆结点
 		if(array!=NULL)
 			p->data = array[i];			// 如果array为NULL，则保持p->data的默认状态
-		p->next = head;					// 运用头插法，按数组元素倒序将堆结点依次插入到链表首结点前
-		head = p;
+		head->next = p;					// 运用头插法，按数组元素倒序将堆结点依次插入到链表首结点前
 	}
-	cur_node = head;
+	cur_node = p;
 	num = n;
 }
 
@@ -124,7 +124,7 @@ LinkList<T> & LinkList<T>::operator=(const LinkList &list)// (深)赋值运算符函数
 template <typename T>
 void LinkList<T>::PutList(ostream &out) const	// 输出链表所有结点的数据到引用out所绑定的ostream对象，该对象可以是cout，也可以是文件对象
 {
-
+	out << '(' << num << ')' << endl;			// 首先输出（或保存至文件）结点的个数
 	for(Node<T> *p=head; p!=nullptr; p=p->next)
 		out << p->data << endl;
 }
@@ -462,4 +462,17 @@ template <typename T>
 void LinkList <T>::Deletenum() {
 	num=num-1;
 }
+
+template <typename T>
+int  LinkList <T>::check() {
+	if (head==NULL || cur_node==NULL)
+	{
+		cout<<"无法进行该操作"<<endl;
+		cur_node=head;
+		return -1;
+	}
+	return 1;
+}
 #endif
+
+
