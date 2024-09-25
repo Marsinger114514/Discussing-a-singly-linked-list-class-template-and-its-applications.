@@ -18,7 +18,7 @@ void AdmissionTest()
     bool continueMainLoop = true;  //定义一个变量用于控制循环
                  //定义一个变量用于控制节点增加
 
-    while (continueMainLoop)
+    L1:while (continueMainLoop)
     {
 
         cout << "\n请输入学校(请输入汉字，直接回车则退出)：";
@@ -126,6 +126,11 @@ void AdmissionTest()
                         if (p1 != nullptr) {
                             uLink.DeleteCurNode();
                             cout << "学校为 " << schoolnameToDelete << " 的考生信息已删除！" << endl;
+                            if(uLink.GoTop() == nullptr) {
+                                cout << "全部学校结点已删除，返回到初始" << endl;
+                                goto L1;
+                            }
+
                         }else {
                             cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
                         }
