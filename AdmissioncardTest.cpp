@@ -84,11 +84,15 @@ void AdmissionTest()
 
             switch (choice)
             {
-            case 1:
+            L2:case 1:
                 {
                     cout << "请输入（学生姓名 学生性别 学生身份证号（8位） 学生准考证号（8位））: ";
-                    cin >> name >> gender >> admission >> id;
-                    cin.ignore(); 
+                    cin >> name >> gender >> id >> admission;
+                    cin.ignore();
+                    if(uLink.CurData().FindCardByAdmission(admission)!=nullptr) {
+                        cout << "该准考证已存在，请重新输入" << endl;
+                        goto L2;
+                    }
                     x_card.Set(name, gender, id, admission);
                     uLink.CurData().AppendCard(x_card);
                 }
@@ -190,7 +194,7 @@ void AdmissionTest()
                         Card* card = uLink.CurData().FindCardByAdmission(admission);
                         if (card != nullptr) {
                             cout << "请输入新的信息（学生姓名 学生性别 学生身份证号（8位） 学生准考证号（8位））: ";
-                            cin >> name >> gender >> admission >> id;
+                            cin >> name >> gender >> id >> admission ;
                             card->Set(name, gender,id , admission);
                             cout << "准考证信息已更新！" << endl;
                         } else {
