@@ -124,7 +124,6 @@ LinkList<T> & LinkList<T>::operator=(const LinkList &list)// (深)赋值运算符函数
 template <typename T>
 void LinkList<T>::PutList(ostream &out) const	// 输出链表所有结点的数据到引用out所绑定的ostream对象，该对象可以是cout，也可以是文件对象
 {
-
 	for(Node<T> *p=head; p!=nullptr; p=p->next)
 		out << p->data << endl;
 }

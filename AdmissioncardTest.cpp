@@ -4,14 +4,13 @@
 #include <string>
 using namespace std;
 
-
 void AdmissionTest()
 {
     LinkList<School> uLink;          //定义链表和结点
     School x_school;
     Node<School> *pU,*p1;
     Card x_card;
-    int p,q;
+    int p;
     string schoolname, name, admission, id, str;
     int i;
     string gender;                  // 学校名，姓名，准考证号，身份证号，性别
@@ -26,7 +25,8 @@ void AdmissionTest()
         getline(cin, schoolname);
 
         if (schoolname.empty()) { // 改成检查字符串是否为空
-            ;
+            continueMainLoop = false; // 设置为 false 表示退出循环
+            break;
         }
         else {
             x_school.Set(schoolname);
@@ -58,7 +58,12 @@ void AdmissionTest()
         while (continueSubLoop)
         {
             cout << endl;
-            uLink.CurData().Show(cout);
+            try {
+                uLink.CurData().Show(cout);
+            }catch (int) {
+                goto L1;
+            }
+
             cout << "1 -- 录入准考证数据" << endl;
             cout << "2 -- 查询该校考生信息" << endl;
             cout << "3 -- 查询所有考生信息" << endl;
@@ -80,7 +85,7 @@ void AdmissionTest()
             {
             case 1:
                 {
-                    cout << "请输入（学生姓名 学生性别 学生准考证号（8位） 学生身份证号（8位））: ";
+                    cout << "请输入（学生姓名 学生性别 学生身份证号（8位） 学生准考证号（8位））: ";
                     cin >> name >> gender >> admission >> id;
                     cin.ignore(); 
                     x_card.Set(name, gender, id, admission);
@@ -116,18 +121,13 @@ void AdmissionTest()
             case 5:
                 {
                     cout << "请选择删除方式 （“1”； 根据学校，“2”：根据准考证号）" << endl;
-                    p1 = uLink.CurNode();
                     int DeleteChoice = getche() - '0';
                     cout << endl;
                     if (DeleteChoice == 1) {
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
                         cout << "请输入学校名: ";
                         string schoolnameToDelete;
                         getline(cin, schoolnameToDelete);
                         p1 = uLink.Locate(string(schoolnameToDelete), true);
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
                         if (p1 != nullptr) {
                             uLink.DeleteCurNode();
                             cout << "学校为 " << schoolnameToDelete << " 的考生信息已删除！" << endl;
@@ -136,31 +136,33 @@ void AdmissionTest()
                                 goto L1;
                             }
 
-                        }else {
+                        }else  {
                             cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
-                            uLink.curnode(p1);
                         }
 
                     }else if (DeleteChoice == 2) {
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
-                        cout << "请输入准考证号: ";        // 按准考证号删除
+                            cout << "请输入准考证号: ";        // 按准考证号删除
                         string admissionToDelete;
                         cin >> admissionToDelete;
 
                         bool cardFound = false;
                         for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip()) {
-                            if (pU->data.RemoveCardByAdmission(admissionToDelete)) {            // 调用学校的删除准考证方法
+                            try {if (pU->data.RemoveCardByAdmission(admissionToDelete)) {
+                                // 调用学校的删除准考证方法
                                 cout << "准考证号 " << admissionToDelete << " 的考生信息已删除！" << endl;
                                 cardFound = true;
                                 break;
                             }
+                            }catch (int){
+                                cout << "无结点可以删除" << endl;
+                            }
                         }
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
+
                         if (!cardFound) {
                             cout << "未找到准考证号为 " << admissionToDelete << " 的考生信息！" << endl;
                         }
+                    }else {
+                        cout << "无效的选择，请重新输入！" << endl;
                     }
                 break;
 
@@ -175,30 +177,20 @@ void AdmissionTest()
                     cout << endl;
                     if (modifyChoice == 1) {
                         // 修改学校信息
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
-                        else
-                        {
-                            cout << "请输入新的学校名称: ";
-                            getline(cin, schoolname);
-                            uLink.CurData().Set(schoolname);
-                            cout << "当前学校名称已修改为: " << schoolname << endl;
-                        }
-
+                        cout << "请输入新的学校名称: ";
+                        getline(cin, schoolname);
+                        uLink.CurData().Set(schoolname);
+                        cout << "当前学校名称已修改为: " << schoolname << endl;
                     } else if (modifyChoice == 2) {
                         // 修改准考证信息
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
                         cout << "请输入要修改的准考证号: ";
                         cin >> admission;
                         cin.ignore();
                         Card* card = uLink.CurData().FindCardByAdmission(admission);
-                        q=uLink.check();
-                        if (q == -1) {goto L1;}
                         if (card != nullptr) {
-                            cout << "请输入新的信息（学生姓名 学生性别 学生准考证号（8位） 学生身份证号（8位））: ";
+                            cout << "请输入新的信息（学生姓名 学生性别 学生身份证号（8位） 学生准考证号（8位））: ";
                             cin >> name >> gender >> admission >> id;
-                            card->Set(name, gender, id, admission);
+                            card->Set(name, gender,id , admission);
                             cout << "准考证信息已更新！" << endl;
                         } else {
                             cout << "找不到该准考证号的学生！" << endl;
