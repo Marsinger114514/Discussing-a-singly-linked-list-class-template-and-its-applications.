@@ -61,6 +61,7 @@ void AdmissionTest()
             try {
                 uLink.CurData().Show(cout);
             }catch (int) {
+                cout << "当前删除删除操作无法进行，恢复初始" << endl;
                 goto L1;
             }
 
