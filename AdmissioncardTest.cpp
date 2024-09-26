@@ -10,20 +10,14 @@ void AdmissionTest()
     School x_school;
     Node<School> *pU,*p1;
     Card x_card;
-    int p;
-    string schoolname, name, admission, id, str;
-    int i;
-    string gender;                  // 学校名，姓名，准考证号，身份证号，性别
-    int choice;                     //用于选择行为
-    bool continueMainLoop = true;  //定义一个变量用于控制循环
-                 //定义一个变量用于控制节点增加
+    int p, i, choice;                // 用于序号，循环，选择行为
+    string schoolname, name, admission, id, gender; // 学校名，姓名，准考证号，身份证号，性别
+    bool continueMainLoop = true;   // 定义一个变量用于控制循环
 
     L1:while (continueMainLoop)
     {
-
         cout << "\n请输入学校(请输入汉字，直接回车则退出)：";
         getline(cin, schoolname);
-
         if (schoolname.empty()) { // 改成检查字符串是否为空
             continueMainLoop = false; // 设置为 false 表示退出循环
             break;
@@ -31,7 +25,7 @@ void AdmissionTest()
         else {
             x_school.Set(schoolname);
             cout << "学校名称为: " << schoolname << endl;
-            bool addOrNot = true;
+            bool addOrNot = true;                           // 定义变量判断是否要增加新学校结点
             for (pU = uLink.GoTop(),i=1; pU != nullptr; pU = uLink.Skip(),i++) {
                 if(schoolname==x_school.ReturnSchoolname(pU)) {
                     addOrNot=false;
@@ -45,7 +39,7 @@ void AdmissionTest()
             }
         }
 
-         pU = uLink.Locate(string(x_school), true);//找到结点的位置
+         pU = uLink.Locate(string(x_school), true);     // 找到结点的位置
 
         if (pU == nullptr)
         {
@@ -53,7 +47,7 @@ void AdmissionTest()
             continue;
         }
 
-        bool continueSubLoop = true;
+        bool continueSubLoop = true;            // 定义一个变量用于控制循环
 
         while (continueSubLoop)
         {
@@ -61,7 +55,7 @@ void AdmissionTest()
             try {
                 uLink.CurData().Show(cout);
             }catch (int) {
-                cout << "当前删除删除操作无法进行，恢复初始" << endl;
+                cout << "当前删除操作无法进行，恢复初始" << endl;
                 goto L1;
             }
 
@@ -86,7 +80,7 @@ void AdmissionTest()
             {
             L2:case 1:
                 {
-                    cout << "请输入（学生姓名 学生性别 学生身份证号（8位） 学生准考证号（8位））: ";
+                    cout << "请输入（学生姓名 学生性别 学生身份证号（8位） 学生准考证号（8位））: ";   //录入准考证数据
                     cin >> name >> gender >> id >> admission;
                     cin.ignore();
                     if(uLink.CurData().FindCardByAdmission(admission)!=nullptr) {
@@ -98,37 +92,41 @@ void AdmissionTest()
                 }
                 break;
             case 2:
-                    cout << uLink.CurData() << endl; //输出
+                    cout << uLink.CurData() << endl;            //输出
                 break;
             case 3:
                 {
                     cout << "所有考生信息：" << endl;
                     p = uLink.CurPos();
-                    for (pU = uLink.GoTop(),i=1; ; pU = uLink.Skip(),i++)   //循环遍历输出
+                    for (uLink.GoTop(),i=1; ; uLink.Skip(),i++)   //循环遍历输出
                     {
                        cout << uLink.CurData() << endl;
                         if(i==uLink.NumNodes())
                             break;
                     }
-                    for (pU = uLink.GoTop();p>0;pU = uLink.Skip(),p--)
+                    for (uLink.GoTop();p>0;uLink.Skip(),p--)
                         ;
                 }
                 break;
             case 4:
-                {//排序操作
-                    cout << "请选择排序方式（根据准考证号排序   “1”：升序，“2”：降序）"<< endl;
+                {
+                    cout << "请选择排序方式（根据准考证号排序   “1”：升序，“2”：降序）"<< endl;   //排序操作
                     int ascending_num = getche() - '0';
-                    bool ascending = (ascending_num == 1);
-                    uLink.CurData().SortCards(x_card,ascending);
-                    cout << uLink.CurData() << endl;
+                    if (ascending_num==1||ascending_num==2) {
+                        bool ascending = (ascending_num == 1);
+                        uLink.CurData().SortCards(x_card,ascending);
+                        cout << uLink.CurData() << endl;
+                    }else {
+                        cout << "无效的选择，请重新输入！" << endl;
+                    }
                 }
                 break;
             case 5:
                 {
-                    cout << "请选择删除方式 （“1”； 根据学校，“2”：根据准考证号）" << endl;
+                    cout << "请选择删除方式 （“1”； 根据学校，“2”：根据准考证号）" << endl;     //删除学校或准考证结点
                     int DeleteChoice = getche() - '0';
                     cout << endl;
-                    if (DeleteChoice == 1) {
+                    if (DeleteChoice == 1) {                                        //按学校删除
                         cout << "请输入学校名: ";
                         string schoolnameToDelete;
                         getline(cin, schoolnameToDelete);
@@ -140,20 +138,17 @@ void AdmissionTest()
                                 cout << "全部学校结点已删除，返回到初始" << endl;
                                 goto L1;
                             }
-
                         }else  {
                             cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
                         }
 
                     }else if (DeleteChoice == 2) {
-                            cout << "请输入准考证号: ";        // 按准考证号删除
+                        cout << "请输入准考证号: ";        // 按准考证号删除
                         string admissionToDelete;
                         cin >> admissionToDelete;
-
                         bool cardFound = false;
                         for (pU = uLink.GoTop(); pU != nullptr; pU = uLink.Skip()) {
-                            try {if (pU->data.RemoveCardByAdmission(admissionToDelete)) {
-                                // 调用学校的删除准考证方法
+                            try {if (pU->data.RemoveCardByAdmission(admissionToDelete)) {       // 调用学校的删除准考证方法
                                 cout << "准考证号 " << admissionToDelete << " 的考生信息已删除！" << endl;
                                 cardFound = true;
                                 break;
@@ -169,26 +164,20 @@ void AdmissionTest()
                     }else {
                         cout << "无效的选择，请重新输入！" << endl;
                     }
+                }
                 break;
-
-                    }
-
-
             case 6:
                 {
-                    // 修改当前结点
-                    cout << "请选择修改类型（1: 修改学校信息，2: 修改准考证信息）：";
+                    cout << "请选择修改类型（1: 修改学校信息，2: 修改准考证信息）：";           // 修改当前结点
                     int modifyChoice = getche() - '0';
                     cout << endl;
                     if (modifyChoice == 1) {
-                        // 修改学校信息
-                        cout << "请输入新的学校名称: ";
+                        cout << "请输入新的学校名称: ";                                    // 修改学校信息
                         getline(cin, schoolname);
                         uLink.CurData().Set(schoolname);
                         cout << "当前学校名称已修改为: " << schoolname << endl;
                     } else if (modifyChoice == 2) {
-                        // 修改准考证信息
-                        cout << "请输入要修改的准考证号: ";
+                        cout << "请输入要修改的准考证号: ";                                // 修改准考证信息
                         cin >> admission;
                         cin.ignore();
                         Card* card = uLink.CurData().FindCardByAdmission(admission);
@@ -201,7 +190,7 @@ void AdmissionTest()
                             cout << "找不到该准考证号的学生！" << endl;
                         }
                     } else {
-                        cout << "无效的选择！" << endl;
+                        cout << "无效的选择，请重新输入！" << endl;
                     }
                 }
                 break;

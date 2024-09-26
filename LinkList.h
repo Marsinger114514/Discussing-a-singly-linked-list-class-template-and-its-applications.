@@ -63,9 +63,8 @@ public:
 
 	template <typename TYPE> void Sort(const TYPE &x, bool ascending=true);	// 根据TYPE类型排序（升序或降序）
 	void Reverse();								// 链表结点倒置
-	bool DeleteHead();                          //删除头结点
-	void Deletenum();
-	void curnode( Node<T>*p);
+	bool DeleteHead();                          // 删除头结点
+	void curnode( Node<T>*p);                   // 改变当前结点
 private:
 	Node<T> *head, *cur_node;					// 链表首结点地址（指针）、当前结点地址（指针）
 	int num;									// 用于记录链表中结点的个数
@@ -446,7 +445,7 @@ void LinkList<T>::Reverse()						// 链表结点倒置
 }
 
 template <typename T>
-bool LinkList<T>::DeleteHead() {
+bool LinkList<T>::DeleteHead() {					//删除头结点
 	if (head == nullptr) {
 		// 链表为空，无法删除
 		return false;
@@ -458,13 +457,9 @@ bool LinkList<T>::DeleteHead() {
 }
 
 template <typename T>
-void LinkList <T>::Deletenum() {
-	num=num-1;
-}
-
-template <typename T>
-void  LinkList <T>::curnode( Node<T>*p)
+void  LinkList <T>::curnode( Node<T> *p)				//更改当前结点
 {
 	cur_node = p;
 }
+
 #endif
