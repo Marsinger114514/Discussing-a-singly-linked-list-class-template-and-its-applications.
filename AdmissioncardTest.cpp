@@ -88,7 +88,7 @@ void AdmissionTest()
                     cout << "请输入（学生姓名 学生性别 学生准考证号（8位） 学生身份证号（8位））: ";
                     cin >> name >> gender >> admission >> id;
                     cin.ignore(); 
-                    x_card.Set(name, gender, admission, id);
+                    x_card.Set(name, gender, id, admission);
                     uLink.CurData().AppendCard(x_card);
                 }
                 break;
@@ -121,6 +121,7 @@ void AdmissionTest()
             case 5:
                 {
                     cout << "请选择删除方式 （“1”； 根据学校，“2”：根据准考证号）" << endl;
+                    p1 = uLink.CurNode();
                     int DeleteChoice = getche() - '0';
                     cout << endl;
                     if (DeleteChoice == 1) {
@@ -138,6 +139,7 @@ void AdmissionTest()
 
                         }else  {
                             cout << "未找到学校为 " << schoolnameToDelete << " 的考生信息！" << endl;
+                            uLink.curnode(p1);
                         }
 
                     }else if (DeleteChoice == 2) {
@@ -190,7 +192,7 @@ void AdmissionTest()
                         if (card != nullptr) {
                             cout << "请输入新的信息（学生姓名 学生性别 学生准考证号（8位） 学生身份证号（8位））: ";
                             cin >> name >> gender >> admission >> id;
-                            card->Set(name, gender, admission, id);
+                            card->Set(name, gender, id, admission);
                             cout << "准考证信息已更新！" << endl;
                         } else {
                             cout << "找不到该准考证号的学生！" << endl;

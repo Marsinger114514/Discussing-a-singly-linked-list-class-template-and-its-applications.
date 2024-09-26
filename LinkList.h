@@ -65,7 +65,7 @@ public:
 	void Reverse();								// 链表结点倒置
 	bool DeleteHead();                          //删除头结点
 	void Deletenum();
-
+	void curnode( Node<T>*p);
 private:
 	Node<T> *head, *cur_node;					// 链表首结点地址（指针）、当前结点地址（指针）
 	int num;									// 用于记录链表中结点的个数
@@ -461,5 +461,11 @@ bool LinkList<T>::DeleteHead() {
 template <typename T>
 void LinkList <T>::Deletenum() {
 	num=num-1;
+}
+
+template <typename T>
+void  LinkList <T>::curnode( Node<T>*p)
+{
+	cur_node = p;
 }
 #endif
